@@ -109,9 +109,4 @@ All colors MUST be HSL.
   .shadow-glow { box-shadow: var(--shadow-glow); }
   .transition-smooth { transition: var(--transition-smooth); }
   .bg-hero { background: var(--gradient-hero); }
-  .hover-scale { @apply transition-transform duration-200 hover:scale-105; }
-  .story-link { @apply relative inline-block; }
-  .story-link::after { content: ""; position: absolute; width: 100%; transform: scaleX(0); height: 2px; bottom: 0; left: 0; background: hsl(var(--primary)); transform-origin: bottom right; transition: transform 300ms ease; }
-  .story-link:hover::after { transform: scaleX(1); transform-origin: bottom left; }
-  .pulse { @apply animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]; }
 }

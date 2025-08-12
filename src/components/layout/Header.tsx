@@ -4,17 +4,15 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 import { useCart } from "@/contexts/CartContext";
-import { checkoutWithStripe } from "@/lib/payments";
-import { toast } from "@/hooks/use-toast";
 
 const Header = () => {
   const { items, remove, update, count, total } = useCart();
   const navigate = useNavigate();
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 animate-fade-in">
+    <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 hover-scale">
+        <Link to="/" className="flex items-center gap-2">
           <div className="rounded-md p-2 bg-secondary text-primary">
             <Stethoscope className="size-5" aria-hidden />
           </div>
@@ -22,10 +20,10 @@ const Header = () => {
         </Link>
 
         <nav className="hidden md:flex items-center gap-6 text-sm">
-          <NavLink to="/" className={({ isActive }) => (isActive ? "text-primary" : "text-muted-foreground hover:text-foreground story-link")}>Home</NavLink>
-          <NavLink to="/catalog" className={({ isActive }) => (isActive ? "text-primary" : "text-muted-foreground hover:text-foreground story-link")}>Shop</NavLink>
-          <a href="#about" className="text-muted-foreground hover:text-foreground story-link">About</a>
-          <a href="#contact" className="text-muted-foreground hover:text-foreground story-link">Contact</a>
+          <NavLink to="/" className={({ isActive }) => (isActive ? "text-primary" : "text-muted-foreground hover:text-foreground")}>Home</NavLink>
+          <NavLink to="/catalog" className={({ isActive }) => (isActive ? "text-primary" : "text-muted-foreground hover:text-foreground")}>Shop</NavLink>
+          <a href="#about" className="text-muted-foreground hover:text-foreground">About</a>
+          <a href="#contact" className="text-muted-foreground hover:text-foreground">Contact</a>
         </nav>
 
         <Sheet>
@@ -34,7 +32,7 @@ const Header = () => {
               <ShoppingCart />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-[420px] max-w-full animate-slide-in-right">
+          <SheetContent side="right" className="w-[420px] max-w-full">
             <SheetHeader>
               <SheetTitle>Your Cart</SheetTitle>
             </SheetHeader>
@@ -63,26 +61,8 @@ const Header = () => {
                     <span className="text-sm text-muted-foreground">Total</span>
                     <span className="font-semibold">${total.toFixed(2)}</span>
                   </div>
-                  <Button
-                    variant="hero"
-                    className="w-full hover-scale"
-                    onClick={async () => {
-                      try {
-                        const url = await checkoutWithStripe(items);
-                        if (!url) {
-                          toast({ title: "Payments not configured", description: "Please add Stripe secret key to enable checkout." });
-                          return;
-                        }
-                        window.open(url, '_blank');
-                      } catch (e: any) {
-                        toast({ title: "Checkout error", description: e.message || 'Something went wrong' });
-                      }
-                    }}
-                  >
+                  <Button variant="hero" className="w-full" onClick={() => { navigate("/catalog"); }}>
                     Checkout
-                  </Button>
-                  <Button variant="secondary" className="w-full" onClick={() => { navigate('/catalog'); }}>
-                    Continue Shopping
                   </Button>
                 </div>
               )}
