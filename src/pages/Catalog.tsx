@@ -21,7 +21,7 @@ const Catalog = () => {
   }, [query, category]);
 
   return (
-    <main className="container py-10">
+    <main className="container py-10 animate-fade-in">
       <SEO
         title="Shop Healthcare Equipment | VitalCare Medical"
         description="Browse premium healthcare equipment: monitors, diagnostics, respiratory and mobility devices."
@@ -51,7 +51,7 @@ const Catalog = () => {
 
       <section className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {filtered.map((p) => (
-          <Card key={p.id} className="overflow-hidden hover:shadow-lg transition-shadow">
+          <Card key={p.id} className="overflow-hidden hover:shadow-lg transition-shadow hover-scale animate-fade-in">
             <CardHeader>
               <CardTitle className="text-base">{p.name}</CardTitle>
             </CardHeader>
@@ -62,8 +62,8 @@ const Catalog = () => {
             <CardFooter className="flex items-center justify-between">
               <div className="font-semibold">${p.price.toFixed(2)}</div>
               <div className="flex gap-2">
-                <Button variant="secondary" onClick={() => (window.location.href = `/product/${p.slug}`)}>Details</Button>
-                <Button variant="hero" onClick={() => { add(p, 1); toast({ title: "Added to cart", description: p.name }); }}>Add</Button>
+                <Button variant="secondary" className="hover-scale" onClick={() => (window.location.href = `/product/${p.slug}`)}>Details</Button>
+                <Button variant="hero" className="hover-scale" onClick={() => { add(p, 1); toast({ title: "Added to cart", description: p.name }); }}>Add</Button>
               </div>
             </CardFooter>
           </Card>
