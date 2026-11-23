@@ -2,8 +2,10 @@ import heroImage from "@/assets/hero-healthcare.jpg";
 import { Button } from "@/components/ui/button";
 import { SEO } from "@/components/SEO";
 import { products } from "@/data/products";
+import { useNavigate } from "react-router-dom";
 
 const Index = () => {
+  const navigate = useNavigate();
   const featured = products.slice(0, 3);
   return (
     <main>
@@ -30,10 +32,10 @@ const Index = () => {
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button variant="hero" size="lg" className="hover-lift" onClick={() => (window.location.href = "/catalog")}>
+              <Button variant="hero" size="lg" className="hover-lift" onClick={() => navigate("/catalog")}>
                 Shop Now
               </Button>
-              <Button variant="glass" size="lg" className="hover-lift" onClick={() => (window.location.href = "#about")}>
+              <Button variant="glass" size="lg" className="hover-lift" onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}>
                 Learn More
               </Button>
             </div>
@@ -80,7 +82,7 @@ const Index = () => {
                 <Button 
                   variant="accent" 
                   className="w-full" 
-                  onClick={() => (window.location.href = `/product/${p.slug}`)}
+                  onClick={() => navigate(`/product/${p.slug}`)}
                 >
                   View Details
                 </Button>

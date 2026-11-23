@@ -7,8 +7,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useCart } from "@/contexts/CartContext";
 import { toast } from "@/hooks/use-toast";
 import { SEO } from "@/components/SEO";
+import { useNavigate } from "react-router-dom";
 
 const Catalog = () => {
+  const navigate = useNavigate();
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<string>("all");
   const { add } = useCart();
@@ -62,7 +64,7 @@ const Catalog = () => {
             <CardFooter className="flex items-center justify-between">
               <div className="font-semibold">${p.price.toFixed(2)}</div>
               <div className="flex gap-2">
-                <Button variant="secondary" onClick={() => (window.location.href = `/product/${p.slug}`)}>Details</Button>
+                <Button variant="secondary" onClick={() => navigate(`/product/${p.slug}`)}>Details</Button>
                 <Button variant="hero" onClick={() => { add(p, 1); toast({ title: "Added to cart", description: p.name }); }}>Add</Button>
               </div>
             </CardFooter>
