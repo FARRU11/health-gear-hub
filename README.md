@@ -1,5 +1,7 @@
 # VitalCare Medical - Healthcare Equipment Store
 
+**🔗 Live demo:** [https://farru11.github.io/health-gear-hub/](https://farru11.github.io/health-gear-hub/)
+
 A modern storefront for medical equipment: stethoscopes, blood pressure monitors,
 pulse oximeters, thermometers, nebulizers and wheelchairs.
 
